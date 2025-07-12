@@ -6,7 +6,7 @@
 * AWS CLI: The AWS CLI should be installed and configured with appropriate IAM permission on the target instances. 
 * IAM Role: The EC2 instances need an IAM role with the `CloudWatchAgentServerPolicy` attached to allow them to interact with CloudWatch. 
 * CloudWatch Agent Configuration: You'll need a `file_config.json` file that defines what metrics the agent should collect. 
-* Target Instances: Identify the Amazon Linux instances you want to manage.
+* Target Instances: Identify the Amazon Linux instances to manage.
   * Filter the instances in `aws_ec2.yaml`
 
 **Ansible Playbook**
