@@ -1,17 +1,17 @@
 # CloudWatch install using Ansible
 
 **Prerequisites**
-* Ansible: Ensure Ansible is installed on your management/control instance.
-  * Use `ansible.cfg` to add the plugins and inventory
+* Ansible: Ensure Ansible is installed on management/control instance.
+  * Use `ansible.cfg` to add the plugins and inventory details.
 * AWS CLI: The AWS CLI should be installed and configured with appropriate IAM permission on the target instances. 
 * IAM Role: The EC2 instances need an IAM role with the `CloudWatchAgentServerPolicy` attached to allow them to interact with CloudWatch. 
-* CloudWatch Agent Configuration: You'll need a `file_config.json` file that defines what metrics and logs the agent should collect. 
+* CloudWatch Agent Configuration: You'll need a `file_config.json` file that defines what metrics the agent should collect. 
 * Target Instances: Identify the Amazon Linux instances you want to manage.
   * Filter the instances in `aws_ec2.yaml`
 
 **Ansible Playbook**
 
-Create ansible playbook to install Cludwatch agent in EC2 instances.
+Create and apply the ansible playbook to install Cloudwatch agent in EC2 instances.
 
 ```yaml
 - name: Install CloudWatch Agent
