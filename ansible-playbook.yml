@@ -1,0 +1,34 @@
+- name: Install CloudWatch Agent
+  hosts: all
+  become: yes  
+
+  tasks:
+    - name: Download CloudWatch Agent installer
+      get_url:
+        url: https://amazoncloudwatch-agent.s3.amazonaws.com/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm #https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
+        dest: ./amazon-cloudwatch-agent.rpm
+        mode: '0644'
+
+    - name: Install CloudWatch Agent
+      shell: sudo rpm -U ./amazon-cloudwatch-agent.rpm 
+
+    - name: Copy config file
+      template:
+        src: /root/file_config.json
+        dest: /home/file_config.json
+
+    - name: Moving config
+      shell: sudo mv /home/file_config.json /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.d/file_config.json
+
+    - name: Starting CloudWatch
+      shell: sudo systemctl start  amazon-cloudwatch-agent
+
+    - name: Automatic Start CloudWatch
+      shell: sudo systemctl enable  amazon-cloudwatch-agent      
+
+    - name: Check CloudWatch agent status
+      command: sudo systemctl status  amazon-cloudwatch-agent
+      register: cw_agent_status
+
+    - debug:
+        var: cw_agent_status.stdout_lines
