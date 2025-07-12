@@ -21,7 +21,7 @@ Create and apply the ansible playbook to install Cloudwatch agent in EC2 instanc
   tasks:
     - name: Download CloudWatch Agent installer
       get_url:        # Downloads the CloudWatch agent package from the specified URL.
-        url: https://amazoncloudwatch-agent.s3.amazonaws.com/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm #https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
+        url: https://amazoncloudwatch-agent.s3.amazonaws.com/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm
         dest: ./amazon-cloudwatch-agent.rpm
         mode: '0644'
 
